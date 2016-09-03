@@ -20,6 +20,6 @@ pod install
 
 - Run the Simulator
 
-- Drag "sample.mov" into your Simulator to add it to the Camera Roll
+- Drag **"sample.mov"** into your Simulator to add it to the Camera Roll
 
 - Run the project
