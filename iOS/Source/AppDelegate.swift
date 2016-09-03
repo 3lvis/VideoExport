@@ -1,5 +1,4 @@
 import UIKit
-import MD5
 
 @UIApplicationMain
 class AppDelegate: UIResponder {

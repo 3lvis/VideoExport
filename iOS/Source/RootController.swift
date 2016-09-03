@@ -1,5 +1,6 @@
 import UIKit
 import Photos
+import FileMD5Hash
 
 class RootController: UIViewController {
     lazy var textView: UITextView = {
@@ -77,11 +78,9 @@ class RootController: UIViewController {
             exportSession.outputURL = destinationURL
             exportSession.outputFileType = AVFileTypeQuickTimeMovie
             exportSession.exportAsynchronouslyWithCompletionHandler {
-                let exportedData = NSData(contentsOfURL: destinationURL)!
                 let url = NSBundle.mainBundle().URLForResource("sample", withExtension: "mov")!
-                let localData = NSData(contentsOfURL: url)!
-                let localHash = localData.md5Hash()
-                let exportedHash = exportedData.md5Hash()
+                let localHash = FileHash.md5HashOfFileAtPath(url.path!)
+                let exportedHash = FileHash.md5HashOfFileAtPath(destinationURL.path!)
 
                 // Here localHash and exportedHash should be the same
 

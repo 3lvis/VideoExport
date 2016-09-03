@@ -1,7 +1,7 @@
 use_frameworks!
 
 abstract_target 'CocoaPods' do
-  pod 'MD5'
+  pod 'FileMD5Hash'
 
   target 'iOS' do
   end
