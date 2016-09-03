@@ -2,7 +2,7 @@
 
 Project showing that exporting the same video generates a different MD5.
 
-## Running the project
+## Instructions
 
 - Install the [cocoapods](https://cocoapods.org) gem
 
