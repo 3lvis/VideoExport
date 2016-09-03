@@ -1,6 +1,6 @@
-# PROJECT_NAME
+# VideoExportBug
 
-PROJECT_DESCRIPTION
+Project showing that exporting the same video generates a different MD5.
 
 ## Running the project
 
@@ -16,17 +16,10 @@ sudo gem install cocoapods
 pod install
 ```
 
-- Open `Project.xcworkspace` or `Project.xcodeproj`
+- Open `Project.xcworkspace`
 
-## Updating generated models
+- Run the Simulator
 
-- Install [mogenerator](http://rentzsch.github.io/mogenerator/)
-- Run the following command in Terminal.app
+- Drag "sample.mov" into your Simulator to add it to the Camera Roll
 
-```
-mogenerator \
---swift \
---model Library/Models/DataModel.xcdatamodeld/DataModel.xcdatamodel \
---output-dir Library/Models \
---v2
-```
+- Run the project
