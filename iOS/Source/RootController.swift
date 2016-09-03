@@ -83,6 +83,8 @@ class RootController: UIViewController {
                 let localHash = localData.md5Hash()
                 let exportedHash = exportedData.md5Hash()
 
+                // Here localHash and exportedHash should be the same
+
                 dispatch_async(dispatch_get_main_queue()) {
                     self.textView.text = "Expected: \(localHash)\nGot         : \(exportedHash)\n \nExpected MD5 verified using http://onlinemd5.com"
                 }
