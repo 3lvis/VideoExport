@@ -69,25 +69,14 @@ class RootController: UIViewController {
         let destinationURL = NSURL.fileURLWithPath(pathToWrite)
         let fileManager = NSFileManager.defaultManager()
         if fileManager.fileExistsAtPath(pathToWrite) {
-            print("File already exists")
             try! fileManager.removeItemAtPath(pathToWrite)
         }
 
         let _ = manager.requestExportSessionForVideo(asset, options: requestOptions, exportPreset: AVAssetExportPresetHighestQuality) { exportSession, info in
-            print("requestExport info: \(info!)")
             guard let exportSession = exportSession else { fatalError("Couldn't create exporter with  \(asset)") }
             exportSession.outputURL = destinationURL
             exportSession.outputFileType = AVFileTypeQuickTimeMovie
             exportSession.exportAsynchronouslyWithCompletionHandler {
-                switch exportSession.status {
-                case .Unknown: print("status: Unknown")
-                case .Waiting: print("status: Waiting")
-                case .Exporting: print("status: Exporting")
-                case .Completed: print("status: Completed")
-                case .Failed: print("status: Failed")
-                case .Cancelled: print("status: Cancelled")
-                }
-
                 let exportedData = NSData(contentsOfURL: destinationURL)!
                 let url = NSBundle.mainBundle().URLForResource("sample", withExtension: "mov")!
                 let localData = NSData(contentsOfURL: url)!
