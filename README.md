@@ -1,4 +1,4 @@
-# VideoExportBug
+# VideoExport
 
 Project showing how to export videos using PhotosKit.
 
