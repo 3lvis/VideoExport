@@ -1,6 +1,6 @@
 # VideoExportBug
 
-Project showing that exporting the same video generates a different MD5.
+Project showing how to export videos using PhotosKit.
 
 ## Instructions
 
