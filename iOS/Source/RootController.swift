@@ -73,11 +73,12 @@ class RootController: UIViewController {
             try! fileManager.removeItemAtPath(pathToWrite)
         }
 
-        let _ = manager.requestExportSessionForVideo(asset, options: requestOptions, exportPreset: AVAssetExportPresetHighestQuality) { exportSession, info in
-            guard let exportSession = exportSession else { fatalError("Couldn't create exporter with  \(asset)") }
-            exportSession.outputURL = destinationURL
-            exportSession.outputFileType = AVFileTypeQuickTimeMovie
-            exportSession.exportAsynchronouslyWithCompletionHandler {
+        let _ = manager.requestAVAssetForVideo(asset, options: requestOptions) { avAsset, _, _ in
+            guard let avAsset = avAsset else { fatalError("Couldn't find AVAsset for asset \(asset)") }
+            if let urlAsset = avAsset as? AVURLAsset {
+                let data = NSData(contentsOfURL: urlAsset.URL)!
+                data.writeToFile(destinationURL.path!, atomically: true)
+
                 let url = NSBundle.mainBundle().URLForResource("sample", withExtension: "mov")!
                 let localHash = FileHash.md5HashOfFileAtPath(url.path!)
                 let exportedHash = FileHash.md5HashOfFileAtPath(destinationURL.path!)
@@ -87,7 +88,10 @@ class RootController: UIViewController {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.textView.text = "Expected: \(localHash)\nGot         : \(exportedHash)\n \nExpected MD5 verified using http://onlinemd5.com"
                 }
+            } else {
+                fatalError("avAsset can't be converted to AVURLAsset")
             }
+
         }
     }
 }
